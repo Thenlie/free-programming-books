@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   build:
@@ -39,9 +40,12 @@ jobs:
         if: steps.books.outcome == 'failure' || steps.casts.outcome == 'failure' || steps.courses.outcome == 'failure' || steps.more.outcome == 'failure'
         uses: thollander/actions-comment-pull-request@v2
         with:
+          # pr_number: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          pr_number: ${{github.event.issue.number}}
           message: |
             Oh no 😟! Lint issues have been found.
 
             Please 🙏, take a moment and address the lint issues.
 
             Thanks in advance for your effort and patience ❤️!
+          run: gh run cancel ${{ github.run_id }}
