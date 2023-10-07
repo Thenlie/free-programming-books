@@ -38,10 +38,16 @@ jobs:
 
       - name: Comment PR
         if: steps.books.outcome == 'failure' || steps.casts.outcome == 'failure' || steps.courses.outcome == 'failure' || steps.more.outcome == 'failure'
-        uses: eps1lon/actions-label-merge-conflict@releases/2.x
+        uses: thollander/actions-comment-pull-request@v2
         with:
-          dirtyLabel: "PR: needs rebase"
-          removeOnDirtyLabel: "PR: ready to ship"
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          commentOnDirty: "This pull request has lint issues, please resolve those before we can evaluate the pull request."
-          commentOnClean: "Conflicts have been resolved. A maintainer will review the pull request as soon as possible."
+          # pr_number: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          pr_number: ${{github.event.issue.number}}
+          message: |
+            Oh no 😟! Lint issues have been found.
+
+            Please 🙏, take a moment and address the lint issues.
+
+            Thanks in advance for your effort and patience ❤️!
+      - name: Exit on fail
+        if: steps.books.outcome == 'failure' || steps.casts.outcome == 'failure' || steps.courses.outcome == 'failure' || steps.more.outcome == 'failure'
+        run: exit 1
