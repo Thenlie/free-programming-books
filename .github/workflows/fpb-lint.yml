@@ -40,8 +40,8 @@ jobs:
         if: steps.books.outcome == 'failure' || steps.casts.outcome == 'failure' || steps.courses.outcome == 'failure' || steps.more.outcome == 'failure'
         uses: eps1lon/actions-label-merge-conflict@releases/2.x
         with:
-          # dirtyLabel: "PR: needs rebase"
-          # removeOnDirtyLabel: "PR: ready to ship"
+          dirtyLabel: "PR: needs rebase"
+          removeOnDirtyLabel: "PR: ready to ship"
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           commentOnDirty: "This pull request has lint issues, please resolve those before we can evaluate the pull request."
           commentOnClean: "Conflicts have been resolved. A maintainer will review the pull request as soon as possible."
