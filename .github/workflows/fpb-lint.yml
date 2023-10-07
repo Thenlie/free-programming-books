@@ -19,6 +19,7 @@ jobs:
           node-version: '16.x'
       - name: Install fpb-lint
         run: npm install -g free-programming-books-lint
+
       - name: Lint books
         id: books
         run: fpb-lint ./books/
@@ -36,18 +37,29 @@ jobs:
         run: fpb-lint ./more/
         continue-on-error: true
 
+      - name: Exit on success
+        if: steps.books.outcome == 'success' && steps.casts.outcome == 'success' && steps.courses.outcome == 'success' && steps.more.outcome == 'success'
+        run: exit 0
+      
+      - name: Get Pull Request Number
+        id: pr_number
+        run: echo "::set-output name=pull_request_number::$(gh pr view --json number -q .number || echo "")"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Comment PR
         if: steps.books.outcome == 'failure' || steps.casts.outcome == 'failure' || steps.courses.outcome == 'failure' || steps.more.outcome == 'failure'
         uses: thollander/actions-comment-pull-request@v2
         with:
           # pr_number: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          pr_number: ${{github.event.issue.number}}
+          pr_number: ${{ steps.pr_number.outputs.pull_request_number }}
           message: |
             Oh no 😟! Lint issues have been found.
 
             Please 🙏, take a moment and address the lint issues.
 
             Thanks in advance for your effort and patience ❤️!
+
       - name: Exit on fail
         if: steps.books.outcome == 'failure' || steps.casts.outcome == 'failure' || steps.courses.outcome == 'failure' || steps.more.outcome == 'failure'
         run: exit 1
