@@ -76,7 +76,7 @@
 * [씹어먹는 C](https://modoocode.com/231) - 이재범
 * [씹어먹는 C++](https://modoocode.com/135) - 이재범
 * [최호성의 C 프로그래밍](https://www.youtube.com/playlist?list=PLXvgR_grOs1BiznAEkzQdA9tlcA06qx75)
-* [C 언어 초보 강의](https://www.youtube.com/playlist?list=PLMsa_0kAjjrdiwQykI8eb3H4IRxLTqCnP) - 나도코딩 (YouTube)
+* [C 언어 초보 강의](https://www.youtube.com/playlist?list=PLMsa_0kAjjrdiwQykI8eb3H4IRxLTqCnP) - 나도코딩
 * [C언어 기초 프로그래밍 강좌](https://www.youtube.com/playlist?list=PLRx0vPvlEmdDNHeulKC6JM25MmZVS_3nT)
 * [C언어 코딩도장](https://dojang.io/course/view.php?id=2)
 
@@ -118,7 +118,7 @@
 
 ### Haskell
 
-* [하스켈 프로그래밍: 프로그래밍과 유형 이론(Type Theory)](https://www.youtube.com/playlist?list=PL5aSjzJqCaPaoi8yC2w549FsVgvXW5xFW) - Gyesik Lee «liga nega» (YouTube)
+* [하스켈 프로그래밍: 프로그래밍과 유형 이론(Type Theory)](https://www.youtube.com/playlist?list=PL5aSjzJqCaPaoi8yC2w549FsVgvXW5xFW) - Gyesik Lee «liga nega»
 
 
 ### Introduction
@@ -143,14 +143,13 @@
 
 ### JavaScript
 
-* [모던 웹을 위한 JavaScript + jQuery](https://www.youtube.com/playlist?list=PLBXuLgInP-5kLy13XLuK8iBWVFDBJygYr)
 * [JavaScript 입문 수업](https://www.youtube.com/playlist?list=PLuHgQVnccGMA4uSig3hCjl7wTDeyIeZVU) (생활코딩)
 * [JavaScript for Web Browser](https://www.youtube.com/playlist?list=PLuHgQVnccGMDTAQ0S_FYxXOi1ZJz4ikaX) (생활코딩)
 
 
 #### AngularJS
 
-* [AngularJS](https://www.youtube.com/playlist?list=PLs_XsVQJKaBk_JN5RctLmmVrGwEzpzqaj) - 양재동 코드랩 (YouTube)
+* [AngularJS](https://www.youtube.com/playlist?list=PLs_XsVQJKaBk_JN5RctLmmVrGwEzpzqaj) - 양재동 코드랩
 
 
 #### React.js
