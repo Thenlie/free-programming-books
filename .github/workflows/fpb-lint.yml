@@ -37,6 +37,17 @@ jobs:
         run: fpb-lint ./more/
         continue-on-error: true
 
+      - name: Delete PR Comment
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            🎉 Thank you for fixing the lint issues.
+
+            Somone will review this PR as soon as possible.
+          comment_tag: fpb-lint
+          mode: delete
+          create_if_not_exists: false
+
       - name: Exit on success
         if: steps.books.outcome == 'success' && steps.casts.outcome == 'success' && steps.courses.outcome == 'success' && steps.more.outcome == 'success'
         run: exit 0
@@ -47,12 +58,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Comment PR
+      - name: Post PR Comment
         if: steps.books.outcome == 'failure' || steps.casts.outcome == 'failure' || steps.courses.outcome == 'failure' || steps.more.outcome == 'failure'
         uses: thollander/actions-comment-pull-request@v2
         with:
-          # pr_number: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           pr_number: ${{ steps.pr_number.outputs.pull_request_number }}
+          comment_tag: fpb-lint
           message: |
             Oh no 😟! Lint issues have been found.
 
