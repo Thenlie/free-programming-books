@@ -1,9 +1,10 @@
 name: free-programming-books-lint
 
-on: [push, pull_request]
+on: [pull_request]
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   build:
@@ -11,13 +12,101 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
-    - run: npm install -g free-programming-books-lint
-    - run: fpb-lint ./books/
-    - run: fpb-lint ./casts/
-    - run: fpb-lint ./courses/
-    - run: fpb-lint ./more/
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: Install fpb-lint
+        run: npm install -g free-programming-books-lint
+
+      - name: Lint books
+        id: books
+        run: fpb-lint ./books/
+        continue-on-error: true
+      - name: Lint casts
+        id: casts
+        run: fpb-lint ./casts/
+        continue-on-error: true
+      - name: Lint courses
+        id: courses
+        run: fpb-lint ./courses/
+        continue-on-error: true
+      - name: Lint more
+        id: more
+        run: fpb-lint ./more/
+        continue-on-error: true
+
+      - name: Get Pull Request Number
+        id: pr_number
+        run: echo "::set-output name=pull_request_number::$(gh pr view --json number -q .number || echo "")"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete PR Comment
+        if: steps.books.outcome == 'success' && steps.casts.outcome == 'success' && steps.courses.outcome == 'success' && steps.more.outcome == 'success'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            🎉 Thank you for fixing the lint issues.
+
+            Somone will review this PR as soon as possible.
+          comment_tag: fpb-lint
+          mode: delete
+          create_if_not_exists: false
+
+      - name: Post PR Comment
+        if: steps.books.outcome == 'failure' || steps.casts.outcome == 'failure' || steps.courses.outcome == 'failure' || steps.more.outcome == 'failure'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          pr_number: ${{ steps.pr_number.outputs.pull_request_number }}
+          comment_tag: fpb-lint
+          message: |
+            Oh no 😟! Lint issues have been found.
+
+            Please 🙏, take a moment and address the lint issues.
+
+            Thanks in advance for your effort and patience ❤️!
+
+      - name: Add Label
+        if: steps.books.outcome == 'failure' || steps.casts.outcome == 'failure' || steps.courses.outcome == 'failure' || steps.more.outcome == 'failure'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.deleteLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              name: "linter error"
+            })
+        
+      - name: Get Label
+        if: steps.books.outcome == 'success' && steps.casts.outcome == 'success' && steps.courses.outcome == 'success' && steps.more.outcome == 'success'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+
+      - name: Remove Label
+        if: steps.books.outcome == 'success' && steps.casts.outcome == 'success' && steps.courses.outcome == 'success' && steps.more.outcome == 'success'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.deleteLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              name: "linter error"
+            })
+
+      - name: Exit on success
+        if: steps.books.outcome == 'success' && steps.casts.outcome == 'success' && steps.courses.outcome == 'success' && steps.more.outcome == 'success'
+        run: exit 0
+
+      - name: Exit on fail
+        if: steps.books.outcome == 'failure' || steps.casts.outcome == 'failure' || steps.courses.outcome == 'failure' || steps.more.outcome == 'failure'
+        run: exit 1
