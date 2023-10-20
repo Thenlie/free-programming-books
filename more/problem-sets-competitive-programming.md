@@ -3,7 +3,7 @@
 * [Competitive Programming](#competitive-programming)
 * [CTF Capture the Flag](#capture-the-flag)
 * [Data science](#data-science)
-* [Information security](#information-security)
+* [HTML and CSS](#html-and-css)
 * [Problem Sets](#problem-sets)
 
 
@@ -15,7 +15,6 @@
 * [APL Problem Solving Competition](https://contest.dyalog.com)
 * [AtCoder](https://atcoder.jp)
 * [beecrowd](https://www.beecrowd.com.br)
-* [Binary Search](https://binarysearch.com)
 * [COCI](https://hsin.hr/coci/)
 * [Codeabbey](http://www.codeabbey.com)
 * [Codechef](https://www.codechef.com/contests)
@@ -41,7 +40,6 @@
 * [LeetCode](https://leetcode.com)
 * [LightOJ](https://lightoj.com)
 * [Meta Hackercup](https://www.facebook.com/codingcompetitions/hacker-cup/)
-* [Microcorruption](https://microcorruption.com/login)
 * [Newton School](https://my.newtonschool.co/contest/all)
 * [oj.uz](https://oj.uz)
 * [Sigmageek](https://sigmageek.com)
@@ -55,11 +53,15 @@
 
 ### Capture the flag
 
+* [ångstromCTF](https://angstromctf.com)
 * [CTFlearn](https://ctflearn.com) (email address *requested*)
+* [CTFtime](https://ctftime.org)
 * [Google CTF](https://capturetheflag.withgoogle.com) (email address *requested*)
 * [Hacker101](https://ctf.hacker101.com) (email address *requested*)
 * [Hackthebox](https://www.hackthebox.eu) (email address *requested*)
 * [HackThisSite](https://www.hackthissite.org) (email address *requested*)
+* [InCTF](https://inctf.in)
+* [Microcorruption](https://microcorruption.com/login)
 * [Overthewire Wargames fungame to practice CTF](https://overthewire.org/wargames/bandit)
 * [Picoctf](https://picoctf.org/resources.html) (email address *requested*)
 * [SmashTheStack](http://www.smashthestack.org/main.html#wargames)
@@ -75,12 +77,9 @@
 * [Kaggle](https://www.kaggle.com)
 
 
-### Information security
+### HTML and CSS
 
-* [ångstromCTF](https://angstromctf.com)
-* [CTFtime](https://ctftime.org)
-* [Hacker101](https://ctf.hacker101.com)
-* [InCTF](https://inctf.in)
+* [Frontend Mentor](https://www.frontendmentor.io/challenges?languages=CSS&sort=difficulty%7Casc&type=free) *(email address requested)*
 
 
 ### Problem Sets
@@ -127,6 +126,7 @@
 * [Python Practice Projects](http://pythonpracticeprojects.com)
 * [Rosalind](http://rosalind.info/problems/locations/)
 * [Sphere Online Judge](http://www.spoj.com/problems/classical)
+* [Striver's A2Z DSA Course/sheet](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2)
 * [TalentBuddy](http://www.talentbuddy.co/blog/)
 * [The Ultimate Topic List(with Tutorials, Problems, and Templates)](https://blog.shahjalalshohag.com/topic-list/) - Shahjalal Shohag
 * [Timus Online Judge](http://acm.timus.ru)
